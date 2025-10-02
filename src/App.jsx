@@ -7,6 +7,7 @@ import Users from './Users'
 import Friends from './Friends'
 import Posts from './Posts'
 import Players from './Players'
+import Countries from './Countries/Countries'
 
 // const fetchUsers = fetch('https://jsonplaceholder.typicode.com/users')
 // .then(res=> res.json())
@@ -21,6 +22,10 @@ const res = await fetch('https://jsonplaceholder.typicode.com/users');
 return res.json();
 } 
 
+
+const countriesPromise = fetch('https://openapi.programming-hero.com/api/all')
+  .then(res => res.json())
+
 function App() {
 //  const friendsPromise = fetchFriends();
 
@@ -32,6 +37,12 @@ function handleClick() {
 
   return (
     <>
+
+<Suspense fallback={<h3>Loading...</h3>}>
+  
+<Countries countriesPromise={countriesPromise}></Countries>
+</Suspense>
+
 <Suspense fallback={<h3>Post not yet</h3>}>
   <Posts  postPromise={postPromise}></Posts>
 </Suspense>

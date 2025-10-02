@@ -8,7 +8,8 @@ export default function Posts ({ postPromise }) {
         <div className="card">
             <h1>All post are here : {posts.length}</h1>
             {
-                posts.map(post => <Post post={post}></Post>)
+                posts.map(post => <Post key={post.name}
+                     post={post}></Post>)
             }
         </div>
     )
